@@ -1,0 +1,14 @@
+ //mapreduce in mongodb
+ use ass3;
+ db.createCollection("studentdata");
+ db.studentdata.insert({"name":"rushi","marks":40,"age":20});
+ db.studentdata.insert({"name":"omya","marks":50,"age":20});
+ db.studentdata.insert({"name":"anya","marks":30,"age":18});
+ db.studentdata.insert({"name":"pajya","marks":50,"age":21});
+  db.studentdata.insert({"name":"pashya","marks":60,"age":21});
+  db.studentdata.find();
+  var mapfunction=function(){emit(this.age,this.marks)}
+ var reducefunction=function(key,values){return Array.sum(values)}
+ db.studentdata.mapReduce(mapfunction,reducefunction,{'out':'Result1_mapreduce'})
+ db.Result1_mapreduce.find();
+ db.studentdata.mapReduce(function(){emit(this.age,this.marks);},function(key,values){ return Array.avg(values)},{query:{age:{$gt:18}},out:'Result2_mapreduce'})

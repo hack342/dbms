@@ -1,0 +1,13 @@
+//aggregation and indexing
+use ass2;
+db.ass4.insert({"roll":1,"name":"rushi","sub":"oop","marks":78});
+db.ass4.insert({"roll":2,"name":"omya","sub":"cc","marks":98});
+ db.ass4.insert({"roll":3,"name":"anya","sub":"wt","marks":89});
+ db.ass4.insert({"roll":4,"name":"pajya","sub":"ai","marks":45});
+  db.ass4.find();
+  db.ass4.createIndex({name:1});
+   db.ass4.getIndexes();
+   db.ass4.find().sort({name:1});
+   db.ass4.find().sort({name:-1});
+   db.ass4.aggregate([{$group:{_id:"$subject",marks:{$min:"$marks"}}}]);
+   db.ass4.aggregate([{$group:{_id:"$subject",marks:{$max:"$marks"}}}]);

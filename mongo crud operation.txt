@@ -1,0 +1,17 @@
+ //mongo crud operation
+ use book;
+ use ass1;
+  db.createCollection("Library");
+  db.library.insert({"bid":1,"name":"c++"});
+   db.library.insert({"bid":2,"name":"java"});
+   db.library.insert({"bid":3,"name":"c"});
+    db.library.insert({"bid":4,"name":"python"});
+	 db.library.find();
+	 db.library.find().pretty();
+	  db.library.update({"name":"python"},{$set:{"name":"php"}});
+	  db.library.find();
+	   db.library.remove({"name":"c"});
+	   db.library.find();
+	    db.library.find({$and:[{"name":"java"},{"desc":"fake book"}]});
+		db.library.find({$or:[{"name":"java"},{"desc":"fake book"}]});
+		db.library.find();
